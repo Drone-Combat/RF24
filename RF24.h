@@ -142,7 +142,7 @@ private:
     bool _is_p_variant; /** For storing the result of testing the toggleFeatures() affect */
     bool _is_p0_rx; /** For keeping track of pipe 0's usage in user-triggered RX mode. */
 
-protected:
+public:
     /**
      * SPI transactions
      *
@@ -648,10 +648,10 @@ public:
      *
      * This function is not available in the python wrapper because it is intended for
      * use on processors with very limited available resources.
-     * 
+     *
      * @remark
      * This function uses much less ram than other `*print*Details()` methods.
-     * 
+     *
      * @code
      * uint8_t encoded_details[43] = {0};
      * radio.encodeRadioDetails(encoded_details);
@@ -660,7 +660,7 @@ public:
      * @param encoded_status The uint8_t array that RF24 radio details are
      * encoded into. This array must be at least 43 bytes in length; any less would surely
      * cause undefined behavior.
-     * 
+     *
      * Registers names and/or data corresponding to the index of the `encoded_details` array:
      * | index | register/data |
      * |------:|:--------------|

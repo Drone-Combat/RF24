@@ -11,6 +11,12 @@
 #include "RF24.h"
 #include <stdio.h>
 
+// Move this evil #define here from utility/Teensy/RF24_arch_config.h.
+#ifndef printf
+    #define printf Serial.printf
+    #define REVERT_PRINTF
+#endif
+
 /****************************************************************************/
 
 void RF24::csn(bool mode)
@@ -530,7 +536,7 @@ uint8_t RF24::sprintf_address_register(char *out_buffer, uint8_t reg, uint8_t qt
         uint8_t* bufptr = read_buffer + addr_width;
         while (--bufptr >= read_buffer) {
             offset += sprintf_P(out_buffer + offset, PSTR("%02X"), *bufptr);
-        }    
+        }
     }
     delete[] read_buffer;
     return offset;
@@ -2019,3 +2025,7 @@ void RF24::setRadiation(uint8_t level, rf24_datarate_e speed, bool lnaEnable)
     setup |= _pa_level_reg_value(level, lnaEnable);
     write_register(RF_SETUP, setup);
 }
+
+#ifdef REVERT_PRINTF
+    #undef printf
+#endif

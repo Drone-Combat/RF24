@@ -19,8 +19,6 @@
 #define _SPI SPIClass
 #define RF24_SPI_PTR
 
-#include "LibPrintf.h"
-// #pragma message("Including LibPrintf via modified RF24 library")
 // #define printf Serial.printf -- causes breakage
 
 #ifdef SERIAL_DEBUG
